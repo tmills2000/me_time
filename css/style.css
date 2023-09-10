@@ -6,3 +6,12 @@ body {
 #todo-wrapper {
 	text-align: center;
 }
+
+.todo-checkbox {
+}
+
+.todo-item {
+	list-style-type: none;
+}
+
+
