@@ -1,9 +1,49 @@
-class TodoItem {
+class TaskList {
+	constructor() {
+		this.taskList = document.querySelector('#todoList');
+		this.doneList = document.querySelector('#doneList');
+	}
+
+	addTask(text) {
+		this.task = new Task(text, this);
+		this.taskList.appendChild(this.task);
+	}
+
+	moveTask(task, done) {
+	/*	if (done) {
+			this.taskList.removeChild(this.task);
+			this.doneList.appendChild(this.task);
+		} else {
+			//IDK yet
+		}
+	*/
+
+		if (done) {
+			this.taskList.removeChild(task);
+			this.doneList.appendChild(task);
+		} else {
+			this.taskList.appendChild(task);
+			this.doneList.removeChild(task);
+		}
+	}
+
+	deleteTask(task) {
+		// Does any of this work???
+		// this.list = task.getParent();
+		// this.list.removeChild(task);
+	}
+
+}
+
+
+class Task extends TaskList {
 	/* 
 	 * List is being added to constructor params to allow for the future addition of allowing
-	 * multiple todo lists.  */
+	 * multiple task lists.  */
 
-	constructor(text, container) {
+	constructor(text) {
+
+		super();
 
 		this.item = document.createElement('li');
 		this.item.setAttribute('class', 'todo-item');
@@ -12,31 +52,32 @@ class TodoItem {
 		this.checkBox = document.createElement('input');
 		this.checkBox.setAttribute('type', 'checkbox');
 		this.checkBox.setAttribute('class', 'todoCheckBox');
+		this.checkBox.addEventListener('change', this.moveTask(this, this.checkBox.checked));
 		
 		this.wrapper = document.createElement('div');
 		this.wrapper.appendChild(this.checkBox);
 		this.wrapper.appendChild(this.item);
 
-		this.container = container;
-		this.container.appendChild(this.wrapper);
-	}
+		return this.wrapper;
 
+	}
 
 }
 
 window.onload = (event) => {
 	console.log("Page is fully loaded.");
-	const todoButton = document.querySelector('button#todoButton');
-	console.log(todoButton);
+
+	const list = new TaskList();
+
+	const taskButton = document.querySelector('button#todoButton');
+	console.log(taskButton);
 
 
-	todoButton.addEventListener("click", function addTodo() {
+	taskButton.addEventListener("click", function addTodo() {
 		const input = document.querySelector("#todoInput");
 		console.log("Input set to: " + input.value);
 		if (input.value) {
-			const todoList = document.querySelector("#todoList");
-			
-			const newTodo = new TodoItem(input.value, todoList);
+			list.addTask(input.value);
 
 			input.value = "";
 		}
