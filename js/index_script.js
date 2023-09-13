@@ -5,20 +5,16 @@ class TaskList {
 	}
 
 	addTask(text) {
-		this.task = new Task(text, this);
+		this.task = new Task(text);
 		this.taskList.appendChild(this.task);
+
+		console.log("Adding new task \"" + text + "\" to todo list");
 	}
 
-	moveTask(task, done) {
-	/*	if (done) {
-			this.taskList.removeChild(this.task);
-			this.doneList.appendChild(this.task);
-		} else {
-			//IDK yet
-		}
-	*/
+	moveTask(task, taskDone) {
+		console.log("Task: \"" + task + "\" is marked done: " + taskDone);
 
-		if (done) {
+		if (taskDone) {
 			this.taskList.removeChild(task);
 			this.doneList.appendChild(task);
 		} else {
@@ -37,9 +33,6 @@ class TaskList {
 
 
 class Task extends TaskList {
-	/* 
-	 * List is being added to constructor params to allow for the future addition of allowing
-	 * multiple task lists.  */
 
 	constructor(text) {
 
@@ -52,13 +45,18 @@ class Task extends TaskList {
 		this.checkBox = document.createElement('input');
 		this.checkBox.setAttribute('type', 'checkbox');
 		this.checkBox.setAttribute('class', 'todoCheckBox');
-		this.checkBox.addEventListener('change', this.moveTask(this, this.checkBox.checked));
-		
+		this.checkBox.addEventListener('click', () => {
+			this.moveTask(this.wrapper,
+			this.checkBox.checked);
+		});
+	
 		this.wrapper = document.createElement('div');
 		this.wrapper.appendChild(this.checkBox);
 		this.wrapper.appendChild(this.item);
 
+	
 		return this.wrapper;
+
 
 	}
 
