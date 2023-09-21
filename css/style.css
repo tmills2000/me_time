@@ -8,17 +8,20 @@ body {
 	margin: 1vh 0 1vh 0;
 	font-size: 1em;
 	width:90%;
-	min-height:30px;
+	border: solid white;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 
 }
 
 .todo-checkbox {
+	margin-left: 1vw;
 
 }
 
 .todo-item {
-	display: inline;
-	height:100%;
+	margin: 10px 0 10px 0;	
 }
 
 .task-delete-button {
@@ -30,5 +33,5 @@ body {
 	height:3vh;
 	cursor:pointer;
 	border:none;
-	float: right;
+	margin-right: 1vw;
 }
