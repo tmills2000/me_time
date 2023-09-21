@@ -65,7 +65,7 @@ class Task {
 		this.#deleteBtn = document.createElement('button');
 		this.#deleteBtn.setAttribute('type', 'button');
 		this.#deleteBtn.setAttribute('class', 'task-delete-button');
-		this.#deleteBtn.textContent = "Delete";
+//		this.#deleteBtn.textContent = "Delete";
 		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
 
 		this.#taskWrapper = document.createElement('div');

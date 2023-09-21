@@ -7,6 +7,9 @@ body {
 .todo-wrapper {
 	margin: 1vh 0 1vh 0;
 	font-size: 1em;
+	width:90%;
+	min-height:30px;
+
 }
 
 .todo-checkbox {
@@ -15,8 +18,17 @@ body {
 
 .todo-item {
 	display: inline;
+	height:100%;
 }
 
 .task-delete-button {
-
+	background:url(../resources/dumpter.png);
+	background-size: cover;
+	min-width:30px;
+	min-height:30px;
+	width:3vh;
+	height:3vh;
+	cursor:pointer;
+	border:none;
+	float: right;
 }
