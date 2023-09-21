@@ -12,12 +12,12 @@ class TaskList {
 	}
 
 	// Need to move this to the Task class
-	moveTask(task, taskDone) {
+	moveTask(task) {
 		let taskWrapper = task.getWrapper();
 
-		console.log("Task: \"" + task.getText() + "\" is marked done: " + taskDone);
+		console.log("Task: \"" + task.getText() + "\" is marked done: " + task.isDone);
 
-		if (taskDone) {
+		if (task.isDone) {
 			this.todoList.removeChild(taskWrapper);
 			this.doneList.appendChild(taskWrapper);
 		} else {
@@ -27,9 +27,13 @@ class TaskList {
 	}
 
 	deleteTask(task) {
-		// Does any of this work???
-		// this.list = task.getParent();
-		// this.list.removeChild(task);
+		let taskWrapper = task.getWrapper();
+
+		if (task.isDone) {
+			this.doneList.removeChild(taskWrapper);
+		} else {
+			this.todoList.removeChild(taskWrapper);
+		}
 	}
 
 }
@@ -37,10 +41,13 @@ class TaskList {
 
 class Task {
 
+	isDone = false;
+
 	#taskList;
 	#taskWrapper;
 	#item;
 	#checkBox;
+	#deleteBtn;
 
 	constructor(text, taskList) {
 
@@ -52,12 +59,19 @@ class Task {
 
 		this.#checkBox = document.createElement('input');
 		this.#checkBox.setAttribute('type', 'checkbox');
-		this.#checkBox.setAttribute('class', 'todoCheckBox');
+		this.#checkBox.setAttribute('class', 'todo-checkbox');
 		this.#checkBox.addEventListener('click', () => this.#todoChecked(this.#checkBox.checked));
+
+		this.#deleteBtn = document.createElement('button');
+		this.#deleteBtn.setAttribute('type', 'button');
+		this.#deleteBtn.setAttribute('class', 'task-delete-button');
+		this.#deleteBtn.textContent = "Delete";
+		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
 
 		this.#taskWrapper = document.createElement('div');
 		this.#taskWrapper.appendChild(this.#checkBox);
 		this.#taskWrapper.appendChild(this.#item);
+		this.#taskWrapper.appendChild(this.#deleteBtn);
 
 	}
 
@@ -74,8 +88,14 @@ class Task {
 	}
 
 	#todoChecked(done) {
-		this.#taskList.moveTask(this, done);
+		this.isDone = done;
+		this.#taskList.moveTask(this);
+
 		// Change Styling?? Or should CSS take care of this when the task is moved to the other list?
+	}
+
+	#deleteClicked() {
+		this.#taskList.deleteTask(this);
 	}
 
 }
