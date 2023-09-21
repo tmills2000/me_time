@@ -53,7 +53,7 @@ class Task {
 
 		this.#taskList = taskList;
 
-		this.#item = document.createElement('li');
+		this.#item = document.createElement('p');
 		this.#item.setAttribute('class', 'todo-item');
 		this.setText(text);
 

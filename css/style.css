@@ -12,7 +12,7 @@ body {
 }
 
 .todo-item {
-	list-style-type: none;
+	display: inline;
 }
 
 .task-delete-button {
