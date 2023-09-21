@@ -1,13 +1,16 @@
 body {
 	background: black;
 	color: white;
+	font-size: 16pt;
 }
 
 .todo-wrapper {
-
+	margin: 1vh 0 1vh 0;
+	font-size: 1em;
 }
 
 .todo-checkbox {
+
 }
 
 .todo-item {
