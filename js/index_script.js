@@ -69,6 +69,7 @@ class Task {
 		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
 
 		this.#taskWrapper = document.createElement('div');
+		this.#taskWrapper.setAttribute('class', 'todo-wrapper');
 		this.#taskWrapper.appendChild(this.#checkBox);
 		this.#taskWrapper.appendChild(this.#item);
 		this.#taskWrapper.appendChild(this.#deleteBtn);
