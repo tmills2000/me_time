@@ -1,25 +1,28 @@
 class TaskList {
 	constructor() {
-		this.taskList = document.querySelector('#todoList');
+		this.todoList = document.querySelector('#todoList');
 		this.doneList = document.querySelector('#doneList');
 	}
 
 	addTask(text) {
-		this.task = new Task(text);
-		this.taskList.appendChild(this.task);
+		this.task = new Task(text, this);
+		this.todoList.appendChild(this.task.getWrapper());
 
 		console.log("Adding new task \"" + text + "\" to todo list");
 	}
 
+	// Need to move this to the Task class
 	moveTask(task, taskDone) {
-		console.log("Task: \"" + task + "\" is marked done: " + taskDone);
+		let taskWrapper = task.getWrapper();
+
+		console.log("Task: \"" + task.getText() + "\" is marked done: " + taskDone);
 
 		if (taskDone) {
-			this.taskList.removeChild(task);
-			this.doneList.appendChild(task);
+			this.todoList.removeChild(taskWrapper);
+			this.doneList.appendChild(taskWrapper);
 		} else {
-			this.taskList.appendChild(task);
-			this.doneList.removeChild(task);
+			this.doneList.removeChild(taskWrapper);
+			this.todoList.appendChild(taskWrapper);
 		}
 	}
 
@@ -34,28 +37,45 @@ class TaskList {
 
 class Task {
 
-	constructor(text) {
+	#taskList;
+	#taskWrapper;
+	#item;
+	#checkBox;
 
-		this.item = document.createElement('li');
-		this.item.setAttribute('class', 'todo-item');
-		this.item.textContent = text;
+	constructor(text, taskList) {
 
-		this.checkBox = document.createElement('input');
-		this.checkBox.setAttribute('type', 'checkbox');
-		this.checkBox.setAttribute('class', 'todoCheckBox');
-		this.checkBox.addEventListener('click', () => {
-			this.moveTask(this.wrapper,
-			this.checkBox.checked);
-		});
-	
-		this.wrapper = document.createElement('div');
-		this.wrapper.appendChild(this.checkBox);
-		this.wrapper.appendChild(this.item);
+		this.#taskList = taskList;
 
-	
-		return this.wrapper;
+		this.#item = document.createElement('li');
+		this.#item.setAttribute('class', 'todo-item');
+		this.setText(text);
 
+		this.#checkBox = document.createElement('input');
+		this.#checkBox.setAttribute('type', 'checkbox');
+		this.#checkBox.setAttribute('class', 'todoCheckBox');
+		this.#checkBox.addEventListener('click', () => this.#todoChecked(this.#checkBox.checked));
 
+		this.#taskWrapper = document.createElement('div');
+		this.#taskWrapper.appendChild(this.#checkBox);
+		this.#taskWrapper.appendChild(this.#item);
+
+	}
+
+	setText(text) {
+		this.#item.textContent = text;
+	}
+
+	getText() {
+		return this.#item.textContent;
+	}
+
+	getWrapper(){
+		return this.#taskWrapper;
+	}
+
+	#todoChecked(done) {
+		this.#taskList.moveTask(this, done);
+		// Change Styling?? Or should CSS take care of this when the task is moved to the other list?
 	}
 
 }
