@@ -32,11 +32,9 @@ class TaskList {
 }
 
 
-class Task extends TaskList {
+class Task {
 
 	constructor(text) {
-
-		super();
 
 		this.item = document.createElement('li');
 		this.item.setAttribute('class', 'todo-item');
