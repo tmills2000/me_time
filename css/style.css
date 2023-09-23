@@ -1,6 +1,4 @@
 body {
-	background: black;
-	color: white;
 	font-size: 16pt;
 }
 
@@ -8,7 +6,7 @@ body {
 	margin: 1vh 0 1vh 0;
 	font-size: 1em;
 	width:90%;
-	border: solid white;
+	border: solid grey;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
