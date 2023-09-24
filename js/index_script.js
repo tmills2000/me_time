@@ -1,17 +1,23 @@
 class TaskList {
+
+	#todoArr = new Array();
+	#doneArr = new Array();
+
 	constructor() {
 		this.todoList = document.querySelector('#todoList');
 		this.doneList = document.querySelector('#doneList');
 	}
 
 	addTask(text) {
-		this.task = new Task(text, this);
-		this.todoList.appendChild(this.task.getWrapper());
+		const task = new Task(text, this);
+		this.todoList.appendChild(task.getWrapper());
+		this.#todoArr += task;
 
 		console.log("Adding new task \"" + text + "\" to todo list");
+
+		task.setIndex(this.#todoArr.length - 1);
 	}
 
-	// Need to move this to the Task class
 	moveTask(task) {
 		let taskWrapper = task.getWrapper();
 
@@ -48,6 +54,7 @@ class Task {
 	#item;
 	#checkBox;
 	#deleteBtn;
+	#index;
 
 	constructor(text, taskList) {
 
@@ -73,6 +80,14 @@ class Task {
 		this.#taskWrapper.appendChild(this.#item);
 		this.#taskWrapper.appendChild(this.#deleteBtn);
 
+	}
+
+	setIndex(index) {
+		this.#index = index;
+	}
+
+	getIndex() {
+		return this.#index;
 	}
 
 	setText(text) {
