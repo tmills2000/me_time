@@ -60,7 +60,7 @@ class Task {
 
 		this.#taskList = taskList;
 
-		this.#item = document.createElement('p');
+		this.#item = document.createElement('button');
 		this.#item.setAttribute('class', 'todo-text');
 		this.setText(text);
 
