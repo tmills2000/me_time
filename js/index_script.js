@@ -73,12 +73,10 @@ class Task {
 		this.#checkBox.setAttribute('class', 'todo-checkbox');
 		this.#checkBox.addEventListener('click', () => this.#todoChecked(this.#checkBox.checked));
 
-		/*
 		this.#deleteBtn = document.createElement('button');
 		this.#deleteBtn.setAttribute('type', 'button');
 		this.#deleteBtn.setAttribute('class', 'task-delete-button');
 		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
-		*/
 
 		this.#drawerToggle = document.createElement('button');
 		this.#drawerToggle.setAttribute('type', 'button');
@@ -93,6 +91,7 @@ class Task {
 	
 		this.#drawer = document.createElement('div');
 		this.#drawer.setAttribute('class', 'task-drawer');
+		this.#drawer.appendChild(this.#deleteBtn);
 
 		this.#taskWrapper = document.createElement('div');
 		this.#taskWrapper.setAttribute('class', 'task-content-wrapper');
