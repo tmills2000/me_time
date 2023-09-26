@@ -55,6 +55,8 @@ class Task {
 	#checkBox;
 	#deleteBtn;
 	#index;
+	#drawer;
+
 
 	constructor(text, taskList) {
 
@@ -74,11 +76,15 @@ class Task {
 		this.#deleteBtn.setAttribute('class', 'task-delete-button');
 		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
 
+		this.#drawer = document.createElement('div');
+		this.#drawer.setAttribute('class', 'task-drawer');
+
 		this.#taskWrapper = document.createElement('div');
 		this.#taskWrapper.setAttribute('class', 'todo-wrapper');
 		this.#taskWrapper.appendChild(this.#checkBox);
 		this.#taskWrapper.appendChild(this.#item);
 		this.#taskWrapper.appendChild(this.#deleteBtn);
+		this.#taskWrapper.appendChild(this.#drawer);
 
 	}
 

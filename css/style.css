@@ -10,7 +10,7 @@ body {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-
+	flex-direction: row;
 }
 
 .todo-checkbox {
@@ -32,4 +32,8 @@ body {
 	cursor:pointer;
 	border:none;
 	margin-right: 1vw;
+}
+
+.task-drawer {
+	visibility: hidden;
 }
