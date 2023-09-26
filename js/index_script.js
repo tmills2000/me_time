@@ -80,7 +80,7 @@ class Task {
 		this.#drawer.setAttribute('class', 'task-drawer');
 
 		this.#taskWrapper = document.createElement('div');
-		this.#taskWrapper.setAttribute('class', 'todo-wrapper');
+		this.#taskWrapper.setAttribute('class', 'task-content-wrapper');
 		this.#taskWrapper.appendChild(this.#checkBox);
 		this.#taskWrapper.appendChild(this.#item);
 		this.#taskWrapper.appendChild(this.#deleteBtn);
