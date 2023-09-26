@@ -66,6 +66,9 @@ class Task {
 		this.#item = document.createElement('button');
 		this.#item.setAttribute('class', 'todo-text');
 		this.setText(text);
+		this.#item.addEventListener('click', () => {
+			this.#item.parentNode.nextElementSibling.classList.toggle('drawer-open');
+		});
 
 		this.#checkBox = document.createElement('input');
 		this.#checkBox.setAttribute('type', 'checkbox');
