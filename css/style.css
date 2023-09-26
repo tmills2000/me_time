@@ -2,6 +2,13 @@ body {
 	font-size: 16pt;
 }
 
+.task-header {
+	width:100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 .task-content-wrapper {
 	margin: 1vh 0 1vh 0;
 	font-size: 1em;
@@ -35,5 +42,5 @@ body {
 }
 
 .task-drawer {
-	visibility: hidden;
+	display: none;
 }

@@ -51,6 +51,7 @@ class Task {
 
 	#taskList;
 	#taskWrapper;
+	#taskHeader;
 	#item;
 	#checkBox;
 	#deleteBtn;
@@ -76,14 +77,18 @@ class Task {
 		this.#deleteBtn.setAttribute('class', 'task-delete-button');
 		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
 
+		this.#taskHeader = document.createElement('div');
+		this.#taskHeader.setAttribute('class', 'task-header');
+		this.#taskHeader.appendChild(this.#checkBox);
+		this.#taskHeader.appendChild(this.#item);
+		this.#taskHeader.appendChild(this.#deleteBtn);
+	
 		this.#drawer = document.createElement('div');
 		this.#drawer.setAttribute('class', 'task-drawer');
 
 		this.#taskWrapper = document.createElement('div');
 		this.#taskWrapper.setAttribute('class', 'task-content-wrapper');
-		this.#taskWrapper.appendChild(this.#checkBox);
-		this.#taskWrapper.appendChild(this.#item);
-		this.#taskWrapper.appendChild(this.#deleteBtn);
+		this.#taskWrapper.appendChild(this.#taskHeader);
 		this.#taskWrapper.appendChild(this.#drawer);
 
 	}
