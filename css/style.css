@@ -41,6 +41,24 @@ body {
 	margin-right: 1vw;
 }
 
+.expand-drawer-button {
+	background:url(../resources/chevron_down.png);
+	background-size: cover;
+	min-width:30px;
+	min-height:30px;
+	width:3vh;
+	height:3vh;
+	cursor:pointer;
+	border:none;
+	margin-right: 1vw;
+
+}
+
+.expand-drawer-button.drawer-open {
+	background: url(../resources/chevron_up.png);
+	background-size: cover;
+}
+
 .task-drawer {
 	display: none;
 }
