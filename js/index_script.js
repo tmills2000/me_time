@@ -59,6 +59,10 @@ class Task {
 	#index;
 	#drawer;
 
+	#hours;
+	#colon;
+	#minutes;
+	#playBtn;
 
 	constructor(text, taskList) {
 
@@ -66,7 +70,7 @@ class Task {
 		this.#taskList = taskList;
 
 		// Create the HTML elements
-		this.#createHeader();
+		this.#createHeader(text);
 		this.#createDrawer();
 
 		// Create a wrapper div to house all the elements and assign the children.
@@ -128,7 +132,8 @@ class Task {
 	/ Start initilizer methods.
 	/ ------------------------------------
 	*/
-	#createHeader() {
+	#createHeader(text) {	
+		
 		this.#title = document.createElement('p');
 		this.#title.setAttribute('class', 'todo-title');
 		this.setText(text);
@@ -155,12 +160,42 @@ class Task {
 		this.#deleteBtn.setAttribute('type', 'button');
 		this.#deleteBtn.setAttribute('class', 'task-delete-button');
 		this.#deleteBtn.addEventListener('click', () => this.#deleteClicked());
+		
+		this.#createTimer();
 
 		this.#drawer = document.createElement('div');
 		this.#drawer.setAttribute('class', 'task-drawer');
+		this.#drawer.appendChild(this.#hours);
+		this.#drawer.appendChild(this.#colon);
+		this.#drawer.appendChild(this.#minutes);
 		this.#drawer.appendChild(this.#deleteBtn);
 	}
 
+	#createTimer() {
+		this.#hours = document.createElement('input');
+		this.#hours.setAttribute('type', 'text');
+		this.#hours.setAttribute('class', 'hours-input');
+		this.#hours.setAttribute('max', '2');
+		this.#hours.addEventListener('onKeyDown', () => this.#restrictInput())
+
+		this.#colon = document.createElement('span');
+		this.#colon.setAttribute('class', 'time-seperator');
+		this.#colon.textContent = ":";
+
+		this.#minutes = document.createElement('input');
+		this.#minutes.setAttribute('type', 'text');
+		this.#minutes.setAttribute('class', 'minutes-input');
+		this.#minutes.setAttribute('pattern', '[0-9]');
+		this.#minutes.setAttribute('max', '2');
+
+	}
+
+	#restrictInput(e) {
+		let badVal = '/[^\d]gi'								
+
+		e.target.value = e.target.value.replace(badVal, '');
+		
+	}
 
 }
 
