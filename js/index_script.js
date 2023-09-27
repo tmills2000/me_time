@@ -52,7 +52,7 @@ class Task {
 	#taskList;
 	#taskWrapper;
 	#taskHeader;
-	#item;
+	#title;
 	#checkBox;
 	#deleteBtn;
 	#drawerToggle;
@@ -64,8 +64,9 @@ class Task {
 
 		this.#taskList = taskList;
 
-		this.#item = document.createElement('button');
-		this.#item.setAttribute('class', 'todo-text');
+		this.#title = document.createElement('input');
+		this.#title.setAttribute('type', 'text');
+		this.#title.setAttribute('class', 'todo-title');
 		this.setText(text);
 
 		this.#checkBox = document.createElement('input');
@@ -86,7 +87,7 @@ class Task {
 		this.#taskHeader = document.createElement('div');
 		this.#taskHeader.setAttribute('class', 'task-header');
 		this.#taskHeader.appendChild(this.#checkBox);
-		this.#taskHeader.appendChild(this.#item);
+		this.#taskHeader.appendChild(this.#title);
 		this.#taskHeader.appendChild(this.#drawerToggle);
 	
 		this.#drawer = document.createElement('div');
@@ -109,11 +110,11 @@ class Task {
 	}
 
 	setText(text) {
-		this.#item.textContent = text;
+		this.#title.value = text;
 	}
 
 	getText() {
-		return this.#item.textContent;
+		return this.#title.textContent;
 	}
 
 	getWrapper(){
