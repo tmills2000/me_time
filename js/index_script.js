@@ -64,8 +64,7 @@ class Task {
 
 		this.#taskList = taskList;
 
-		this.#title = document.createElement('input');
-		this.#title.setAttribute('type', 'text');
+		this.#title = document.createElement('p');
 		this.#title.setAttribute('class', 'todo-title');
 		this.setText(text);
 
@@ -110,7 +109,7 @@ class Task {
 	}
 
 	setText(text) {
-		this.#title.value = text;
+		this.#title.textContent = text;
 	}
 
 	getText() {
