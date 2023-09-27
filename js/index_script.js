@@ -77,6 +77,11 @@ class Task {
 
 	}
 
+	/* 
+	/ ------------------------------------
+	/ Start Setters and Getters
+	/ ------------------------------------
+	*/
 	setIndex(index) {
 		this.#index = index;
 	}
@@ -97,6 +102,11 @@ class Task {
 		return this.#taskWrapper;
 	}
 
+	/*
+	/ ------------------------------------
+	/ Start event listener action methods.
+	/ ------------------------------------
+	*/
 	#todoChecked(done) {
 		this.isDone = done;
 		this.#taskList.moveTask(this);
@@ -108,6 +118,16 @@ class Task {
 		this.#taskList.deleteTask(this);
 	}
 
+	#toggleDrawer() {
+		this.#drawer.classList.toggle('drawer-open');
+		this.#drawerToggle.classList.toggle('drawer-open');
+	}
+
+	/*
+	/ ------------------------------------
+	/ Start initilizer methods.
+	/ ------------------------------------
+	*/
 	#createHeader() {
 		this.#title = document.createElement('p');
 		this.#title.setAttribute('class', 'todo-title');
@@ -141,10 +161,6 @@ class Task {
 		this.#drawer.appendChild(this.#deleteBtn);
 	}
 
-	#toggleDrawer() {
-		this.#drawer.classList.toggle('drawer-open');
-		this.#drawerToggle.classList.toggle('drawer-open');
-	}
 
 }
 
